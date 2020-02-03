@@ -1,7 +1,7 @@
 public class Conway_game {
     //Attribute
-    private int row_max = 10;
-    private int col_max = 10;
+    private int row_max = 3;
+    private int col_max = 6;
     private int[][] game_world = new int[row_max][col_max ];
     private char char_world[] = {'+','#'};
     private int[][] copy_of_game_world = new int[row_max][col_max ];
@@ -10,8 +10,8 @@ public class Conway_game {
     //Getter and setter
 
 
-    public int[][] getGame_world() {
-        return game_world;
+    public int getGame_world(int r,int c) {
+        return game_world[r][c];
     }
 
     public void setGame_world(int[][] game_world) {
@@ -50,8 +50,8 @@ public class Conway_game {
                 int Dead = this.game_world[r][c];
                 int one_up_location = this.game_world[r + 1][c];
                 int two_up_location = this.game_world[r + 2][c];
-                int three_up_location = this.game_world[r + 3][c];
-                int one_down_location = this.game_world[r - 1][c];
+              //  int three_up_location = this.game_world[r + 3][c];
+              //  int one_down_location = this.game_world[r - 1][c];
                 int two_down_location = this.game_world[r - 2][c];
                 int three_down_location = this.game_world[r - 3][c];
                 int one_left_location = this.game_world[r][c - 1];
@@ -71,16 +71,16 @@ public class Conway_game {
                             this.game_world[r][c] = 0;
                         }
 
-                    }else if(has_neighbour(one_down_location)){
-                        if(has_neighbour(two_down_location)){
-                            ///Any live cell with 2 or 3 neighbours becomes remains alive
-                            break;
-                        }else{
-                            ///Any live cell with less than 2 neighbours becomes dead
-                            this.game_world[r][c] = 0;
-                        }
-
-                    }else if(has_neighbour(one_left_location)){
+                    }   //else if(has_neighbour(one_down_location)){
+//                        if(has_neighbour(two_down_location)){
+//                            ///Any live cell with 2 or 3 neighbours becomes remains alive
+//                            break;
+//                        }else{
+//                            ///Any live cell with less than 2 neighbours becomes dead
+//                            this.game_world[r][c] = 0;
+//                        }
+//
+//                    }else if(has_neighbour(one_left_location)){
                         if(has_neighbour(two_left_location)){
                             ///Any live cell with 2 or 3 neighbours becomes remains alive
                             break;
@@ -103,61 +103,61 @@ public class Conway_game {
                         this.game_world[r][c] = 0;
                     }
 
-                }else if(!(Is_alive(Dead))){
-                    if(Is_alive(one_up_location)){
-                        if(Is_alive(two_up_location)){
-                            if(Is_alive(three_up_location)){
-                                ///Any dead cell with 3 live cells becomes alive
-                                this.game_world[r][c] = 1;
-                            }else{
-                                break;
-                            }
+             //   } //else if(!(Is_alive(Dead))){
+//                    if(Is_alive(one_up_location)){
+//                        if(Is_alive(two_up_location)){
+//                            if(Is_alive(three_up_location)){
+//                                ///Any dead cell with 3 live cells becomes alive
+//                                this.game_world[r][c] = 1;
+//                            }else{
+//                                break;
+//                            }
 
-                        }else{
-                            break;
-                        }
+//                        }else{
+//                            break;
+//                        }
 
-                    }else if(Is_alive(one_down_location)){
-                        if(Is_alive(two_down_location)){
-                            if(Is_alive(three_down_location)){
-                                ///Any dead cell with 3 live cells becomes alive
-                                this.game_world[r][c] = 1;
-                            }else{
-                                break;
-                            }
-
-                        }else{
-                            break;
-                        }
-
-                    }else if(Is_alive(one_left_location)){
-                        if(Is_alive(two_left_location)){
-                            if(Is_alive(three_left_location)){
-                                ///Any dead cell with 3 live cells becomes alive
-                                this.game_world[r][c] = 1;
-                            }else{
-                                break;
-                            }
-                        }else{
-                            break;
-                        }
-
-                    }else if(Is_alive(one_right_location)){
-                        if(Is_alive(two_right_location)){
-                            if(Is_alive(three_right_location)){
-                                ///Any dead cell with 3 live cells becomes alive
-                                this.game_world[r][c] = 1;
-                            }else{
-                                break;
-                            }
-                        }else{
-                            break;
-                        }
-
-                    }else{
-                        break;
-                    }
-                }
+//                    }else if(Is_alive(one_down_location)){
+//                        if(Is_alive(two_down_location)){
+//                            if(Is_alive(three_down_location)){
+//                                ///Any dead cell with 3 live cells becomes alive
+//                                this.game_world[r][c] = 1;
+//                            }else{
+//                                break;
+//                            }
+//
+//                        }else{
+//                            break;
+//                        }
+//
+//                    }else if(Is_alive(one_left_location)){
+//                        if(Is_alive(two_left_location)){
+//                            if(Is_alive(three_left_location)){
+//                                ///Any dead cell with 3 live cells becomes alive
+//                                this.game_world[r][c] = 1;
+//                            }else{
+//                                break;
+//                            }
+//                        }else{
+//                            break;
+//                        }
+//
+//                    }else if(Is_alive(one_right_location)){
+//                        if(Is_alive(two_right_location)){
+//                            if(Is_alive(three_right_location)){
+//                                ///Any dead cell with 3 live cells becomes alive
+//                                this.game_world[r][c] = 1;
+//                            }else{
+//                                break;
+//                            }
+//                        }else{
+//                            break;
+//                        }
+//
+//                    }else{
+//                        break;
+//                    }
+//                }
 
 
 
@@ -191,23 +191,10 @@ public class Conway_game {
         return ((input == 1) || (input == 0));
     }
 
+public void play(char[][] input){
+    initialise_game(input);
+    evolution();
+    change_other_live_to_dead();
+}
 
-  public char[][] display(char[][] input){
-        initialise_game(input);
-        evolution();
-        change_other_live_to_dead();
-        char[][] output = new char[row_max][col_max];
-
-        for(int r = 0;r <row_max;r++){
-            for(int c = 0;c <col_max;c++){
-                if(Is_alive(this.game_world[r][c])){
-                    output[r][c] = '#';
-                }else{
-                    output[r][c] = '+';
-                }
-            }
-        }
-
-       return output;
-  }
 }
